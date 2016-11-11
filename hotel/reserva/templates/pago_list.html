@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<title>{% block title %} Lista Pagos {% endblock %}</title>
+{% block content %}
+<h1>Lista Pagos</h1>
+
+<table border CELLPADDING=7 CELLSPACING=0>
+    <tbody>
+        {% if object_list %}
+    <thead>
+        <tr>
+            <td><strong>#</strong></td>
+            <td><strong>Accion</strong></td>
+            <td><strong>Reserva</strong></td>
+            <td><strong>Tipo de pago</strong></td>
+        </tr>
+
+    </thead>
+
+        {% for pago in object_list %}
+        <tr>
+            <td>{{ pago.id }}</td>
+            <td>
+                <a href="{% url 'pago_detail' pago.id %}">Ver detalles</a> | <a href="{% url 'pago_editar' pago.id %}">Editar</a>
+            </td>
+            <td>{{ pago.reserva }}</td>
+            <td>{{ pago.get_tpago_display }} </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de pagos</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock%}

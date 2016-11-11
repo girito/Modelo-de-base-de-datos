@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<title>{% block title %} Lista Administradores {% endblock %}</title>
+{% block content %}
+<h1>Lista Administradores</h1>
+
+<table border CELLPADDING=7 CELLSPACING=0>
+    <tbody>
+        {% if object_list %}
+        <thead>
+            <tr>
+                <td><strong>#</strong></td>
+                <td><strong>Accion</strong></td>
+                <td><strong>Nombre</strong></td>
+            </tr>
+
+        </thead>
+        {% for admin in object_list %}
+        <tr>
+            <td>{{ admin.id }}</td>
+            <td>
+                <a href="{% url 'admin_editar' admin.id %}">Editar</a>
+            </td>
+            <td>{{ admin.nombre_completo_admin }}</td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de administradores</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock%}

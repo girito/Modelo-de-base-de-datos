@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<title>{% block title %} Lista Habitaciones {% endblock %}</title>
+{% block content %}
+<h1>Lista Habitaciones</h1>
+
+<table border CELLPADDING=7 CELLSPACING=0>
+    <tbody>
+        {% if object_list %}
+        <thead>
+            <tr>
+                <td><strong>#</strong></td>
+                <td><strong>Accion</strong></td>
+                <td><strong>Nombre</strong></td>
+                <td><strong>Capacidad</strong></td>
+                <td><strong>Estado</strong></td>
+            </tr>
+        </thead>
+        {% for habitacion in object_list %}
+        <tr>
+            <td>{{ habitacion.id }}</td>
+            <td>
+                <a href="{% url 'habitacion_detail' habitacion.id %}">Ver detalles</a> | <a href="{% url 'habitacion_editar' habitacion.id %}">Editar</a>
+            </td>
+            <td>{{ habitacion.nombre_habitacion }}</td>
+            <td>{{ habitacion.capacidad }} persona(s)</td>
+            <td>{{ habitacion.get_estado_display }}</td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de habitaciones</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock%}

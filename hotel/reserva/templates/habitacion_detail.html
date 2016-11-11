@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<title>{% block title %} Detalle Habitación {% endblock %}</title>
+{% block content %}
+<h1>Detalle Habitación</h1>
+<h2>{{ habitacion.nombre_habitacion }}</h2>
+<p><strong>Descripción:</strong> <i>{{ habitacion.descripcion }}</i></p>
+<p><strong>Capacidad:</strong> <i>{{ habitacion.capacidad }}</i></p>
+<p><strong>Precio:</strong> <i>{{ habitacion.precio }} soles</i></p>
+<p><strong>Estado:</strong> <i>{{ habitacion.get_estado_display }}</i></p>
+<p>
+    <a href="{% url 'habitacion_listar' %}">Regresar</a>
+</p>
+{% endblock%}

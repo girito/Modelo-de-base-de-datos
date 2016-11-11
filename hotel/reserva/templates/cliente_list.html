@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<title>{% block title %} Lista Clientes {% endblock %}</title>
+{% block content %}
+<h1>Lista Clientes</h1>
+
+<table border CELLPADDING=7 CELLSPACING=0>
+    <tbody>
+        {% if object_list %}
+        <thead>
+            <tr>
+                <td><strong>#</strong></td>
+                <td><strong>Accion</strong></td>
+                <td><strong>DNI</strong></td>
+                <td><strong>Nombres</strong></td>
+            </tr>
+        </thead>
+        {% for cliente in object_list %}
+        <tr>
+            <td>{{ cliente.id }}</td>
+            <td>
+                <a href="{% url 'cliente_detail' cliente.id %}">Ver detalles</a> | <a href="{% url 'cliente_editar' cliente.id %}">Editar</a>
+            </td>
+            <td>{{ cliente.dni_cliente }}</td>
+            <td>{{ cliente.nombre_cliente }}</td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de clientes</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock%}

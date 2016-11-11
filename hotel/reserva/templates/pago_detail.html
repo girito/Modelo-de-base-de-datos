@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+<title>{% block title %} Detalle Pago {% endblock %}</title>
+{% block content %}
+<h1>Detalle Pago</h1>
+<p><strong>Reserva:</strong> <i>{{ pago.reserva }}</i></p>
+<p><strong>Tipo de pago:</strong> <i>{{ pago.get_tpago_display }}</i></p>
+<p><strong>Fecha y hora de pago:</strong> <i>{{ pago.fecha_pago }}</i></p>
+<p>
+    <a href="{% url 'pago_listar' %}">Regresar</a>
+</p>
+{% endblock%}
