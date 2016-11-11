@@ -14,7 +14,7 @@ from .models import Habitacion, Cliente, Admin, Reserva, Pago
 def index(request):
     return render(request, "index.html")
 
-
+# Administrador
 class AdminList(ListView):
     model = Admin
     template_name = "admin_list.html"
@@ -48,7 +48,7 @@ def admin_edit(request, pk):
             return redirect("admin_listar")
     return render(request, "create.html", {"form":form})
 
-
+# Cliente
 class ClienteDetail(DetailView):
     model = Cliente
     template_name = "cliente_detail.html"
@@ -86,7 +86,7 @@ def cliente_edit(request, pk):
             return redirect("cliente_listar")
     return render(request, "create.html", {"form":form})
 
-
+# Habitacion
 class HabitacionDetail(DetailView):
     model = Habitacion
     template_name = "habitacion_detail.html"
@@ -124,7 +124,7 @@ def habitacion_edit(request, pk):
             return redirect("habitacion_listar")
     return render(request, "create.html", {"form":form})
 
-
+# Reserva
 class ReservaDetail(DetailView):
     model = Reserva
     template_name = "reserva_detail.html"
@@ -192,7 +192,7 @@ def reserva_edit(request, pk):
                 return redirect("reserva_listar")
     return render(request, "create.html", {"form":form})
 
-
+# Pago
 class PagoDetail(DetailView):
     model = Pago
     template_name = "pago_detail.html"
