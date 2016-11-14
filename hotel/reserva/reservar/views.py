@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from django.contrib import messages
+from datetime import date
 
 from .forms import AdminForm, HabitacionForm, ClienteForm, ReservaForm, PagoForm
 from .models import Habitacion, Cliente, Admin, Reserva, Pago
@@ -128,8 +129,9 @@ def validar_fecha(request,form,queryset):
     fechain=form.cleaned_data.get("fecha_in")
     fechaout=form.cleaned_data.get("fecha_out")
     habit=form.cleaned_data.get("habitacion")
+    fechahoy = date.today()
     ban=0
-    if fechain <= fechaout:
+    if fechain <= fechaout and fechain >= fechahoy and fechaout >= fechahoy:
         for reserva in queryset:
             if habit==reserva.habitacion \
                 and ((fechain >= reserva.fecha_in and fechain <= reserva.fecha_out and fechaout >= reserva.fecha_in and fechaout <= reserva.fecha_out) \
