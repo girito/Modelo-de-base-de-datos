@@ -1,8 +1,9 @@
+<h1></h1>
 {% extends "base.html" %}
 <title>{% block title %} {{titulo}} {% endblock %}</title>
 {% block content %}
 <h1>{{titulo}}</h1>
-
+<br>
 {% if form %}
 <form method="post">
     {% csrf_token %}

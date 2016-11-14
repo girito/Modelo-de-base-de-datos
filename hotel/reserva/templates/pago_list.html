@@ -1,15 +1,16 @@
+<h1></h1>
 {% extends "base.html" %}
 <title>{% block title %} Lista Pagos {% endblock %}</title>
 {% block content %}
 <h1>Lista Pagos</h1>
 
-<table border CELLPADDING=7 CELLSPACING=0>
+<table class="table table-bordered">
     <tbody>
         {% if object_list %}
     <thead>
         <tr>
             <td><strong>#</strong></td>
-            <td><strong>Accion</strong></td>
+            <td><strong>Acción</strong></td>
             <td><strong>Reserva</strong></td>
             <td><strong>Tipo de pago</strong></td>
         </tr>

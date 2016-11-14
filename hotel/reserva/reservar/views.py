@@ -14,24 +14,25 @@ from .models import Habitacion, Cliente, Admin, Reserva, Pago
 def index(request):
     return render(request, "index.html")
 
+#titulos
+tituloa="Administradores"
+tituloc="Clientes"
+tituloh="Habitaciones"
+titulor="Reservas"
+titulop="Pagos"
 # Administrador
 class AdminList(ListView):
     model = Admin
     template_name = "admin_list.html"
 
 def admin_create(request):
-    titulo="Administradores"
     form=AdminForm(request.POST or None, request.FILES or None)
-    context={
-        "titulo":titulo,
-        "form":form
-    }
     if form.is_valid():
         nombre=form.cleaned_data.get("nombre_completo_admin")
         form.save()
         messages.success(request, "Administrador(a) %s, registrado(a) con exito. " %(nombre))
         return HttpResponseRedirect(request.path)
-    return render(request,"create.html",{'form':form})
+    return render(request,"create.html",{"titulo":tituloa,"form":form})
 
 def admin_edit(request, pk):
     try:
@@ -44,9 +45,9 @@ def admin_edit(request, pk):
         form = AdminForm(request.POST, instance=admin)
         if form.is_valid():
             form.save()
-            messages.success(request, "Administrador, actualizado con exito.")
+            messages.success(request, "Administrador actualizado con exito.")
             return redirect("admin_listar")
-    return render(request, "create.html", {"form":form})
+    return render(request, "create.html", {"titulo":tituloa,"form":form})
 
 # Cliente
 class ClienteDetail(DetailView):
@@ -58,18 +59,13 @@ class ClienteList(ListView):
     template_name = "cliente_list.html"
 
 def cliente_create(request):
-    titulo="Clientes"
     form=ClienteForm(request.POST or None, request.FILES or None)
-    context={
-        "titulo":titulo,
-        "form":form
-    }
     if form.is_valid():
         nombre=form.cleaned_data.get("nombre_cliente")
         form.save()
         messages.success(request, "Cliente %s, registrado con exito. " %(nombre))
         return HttpResponseRedirect(request.path)
-    return render(request,"create.html",{'form':form})
+    return render(request,"create.html",{"titulo":tituloc,"form":form})
 
 def cliente_edit(request, pk):
     try:
@@ -82,9 +78,9 @@ def cliente_edit(request, pk):
         form = ClienteForm(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
-            messages.success(request, "Cliente, actualizado con exito.")
+            messages.success(request, "Cliente actualizado con exito.")
             return redirect("cliente_listar")
-    return render(request, "create.html", {"form":form})
+    return render(request, "create.html", {"titulo":tituloc,"form":form})
 
 # Habitacion
 class HabitacionDetail(DetailView):
@@ -96,18 +92,13 @@ class HabitacionList(ListView):
     template_name = "habitacion_list.html"
 
 def habitacion_create(request):
-    titulo="Habitaciones"
     form=HabitacionForm(request.POST or None, request.FILES or None)
     queryset=Habitacion.objects.all()
-    context={
-        "titulo":titulo,
-        "form":form
-    }
     if form.is_valid():
         form.save()
-        messages.success(request, "Habitacion registrada con exito.")
+        messages.success(request, "Habitación registrada con exito.")
         return HttpResponseRedirect(request.path)
-    return render(request,"create.html",{'form':form})
+    return render(request,"create.html",{"titulo":tituloh,"form":form})
 
 def habitacion_edit(request, pk):
     try:
@@ -120,9 +111,9 @@ def habitacion_edit(request, pk):
         form = HabitacionForm(request.POST, instance=habitacion)
         if form.is_valid():
             form.save()
-            messages.success(request, "Habitacion, actualizada con exito.")
+            messages.success(request, "Habitación actualizada con exito.")
             return redirect("habitacion_listar")
-    return render(request, "create.html", {"form":form})
+    return render(request, "create.html", {"titulo":tituloh,"form":form})
 
 # Reserva
 class ReservaDetail(DetailView):
@@ -151,24 +142,19 @@ def validar_fecha(request,form,queryset):
     return ban
 
 def reserva_create(request):
-    titulo="Reservas"
     form=ReservaForm(request.POST or None, request.FILES or None)
     queryset=Reserva.objects.all()
-    context={
-        "titulo":titulo,
-        "form":form
-    }
     if form.is_valid():
         ban=validar_fecha(request, form,queryset)
         if ban==2:
-            messages.success(request, "Las fechas no son validas.")
+            messages.warning(request, "Las fechas no son validas.")
         if ban==1:
-            messages.success(request, "La habitacion ya esta reservada en esas fechas.")
+            messages.warning(request, "La habitacion ya esta reservada en esas fechas.")
         if ban==0:
             form.save()
-            messages.success(request, "Reserva, registrada con exito.")
+            messages.success(request, "Reserva registrada con exito.")
             return HttpResponseRedirect(request.path)
-    return render(request,"create.html",{"form":form})
+    return render(request,"create.html",{"titulo":titulor,"form":form})
 
 def reserva_edit(request, pk):
     try:
@@ -183,14 +169,14 @@ def reserva_edit(request, pk):
             queryset=Reserva.objects.all().exclude(pk=pk)
             ban=validar_fecha(request,form,queryset)
             if ban==2:
-                messages.success(request, "Las fechas no son validas.")
+                messages.warning(request, "Las fechas no son validas.")
             if ban==1:
-                messages.success(request, "La habitacion ya esta reservada en esas fechas.")
+                messages.warning(request, "La habitacion ya esta reservada en esas fechas.")
             if ban==0:
                 form.save()
-                messages.success(request, "Reserva, actualizada con exito.")
+                messages.success(request, "Reserva actualizada con exito.")
                 return redirect("reserva_listar")
-    return render(request, "create.html", {"form":form})
+    return render(request, "create.html", {"titulo":titulor,"form":form})
 
 # Pago
 class PagoDetail(DetailView):
@@ -204,15 +190,11 @@ class PagoList(ListView):
 def pago_create(request):
     titulo="Pagos"
     form=PagoForm(request.POST or None, request.FILES or None)
-    context={
-        "titulo":titulo,
-        "form":form
-    }
     if form.is_valid():
         form.save()
-        messages.success(request, "Pago, registrado con exito.")
+        messages.success(request, "Pago registrado con exito.")
         return HttpResponseRedirect(request.path)
-    return render(request,"create.html",{'form':form})
+    return render(request,"create.html",{"titulo":titulop,"form":form})
 
 def pago_edit(request, pk):
     try:
@@ -225,6 +207,6 @@ def pago_edit(request, pk):
         form = PagoForm(request.POST, instance=pago)
         if form.is_valid():
             form.save()
-            messages.success(request, "Pago, actualizado con exito.")
+            messages.success(request, "Pago actualizado con exito.")
             return redirect("pago_listar")
-    return render(request, "create.html", {"form":form})
+    return render(request, "create.html", {"titulo":titulop,"form":form})
