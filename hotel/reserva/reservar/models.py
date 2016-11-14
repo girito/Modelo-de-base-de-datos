@@ -10,7 +10,6 @@ class Habitacion(models.Model):
 	capacidad=models.IntegerField()
 	precio=models.DecimalField(max_digits=5, decimal_places=2)
 	estado = models.CharField(max_length=1,choices=estado_choices,default='D')
-
 	def __str__(self):
 		return self.nombre_habitacion
 
@@ -33,7 +32,7 @@ class Reserva(models.Model):
     fecha_in=models.DateField()
     fecha_out=models.DateField()
     def __str__(self):
-        return 'Habit '+ str(self.habitacion)+' / Ingreso: '+str(self.fecha_in)+' / Salida: '+str(self.fecha_out)
+        return 'Cliente: '+ str(self.cliente)+' / Habit '+ str(self.habitacion)+' / Ingreso: '+str(self.fecha_in)+' / Salida: '+str(self.fecha_out)
 
 class Pago(models.Model):
     tpago_choices = (
