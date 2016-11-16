@@ -2,11 +2,19 @@
 {% extends 'base.html' %}
 <title>{% block title %} Detalle Pago {% endblock %}</title>
 {% block content %}
-<h1>Detalle Pago</h1>
-<p><strong>Reserva:</strong> <i>{{ pago.reserva }}</i></p>
+<h1>Detalle Pago</h1><br>
+<p><strong>DNI del Cliente:</strong> <i>{{ pago.reserva.cliente.dni_cliente }}</i></p>
+<p><strong>Nombre completo del Cliente:</strong> <i>{{ pago.reserva.cliente }}</i></p>
+<p><strong>Habitación reservada:</strong> <i>{{ pago.reserva.habitacion }}</i></p>
+<p><strong>Fechas reservadas:</strong> <i>
+<ul>
+    <li>Ingreso: {{ pago.reserva.fecha_in }}</li>
+    <li>Salida: {{ pago.reserva.fecha_out }}</li>
+</ul>
+</i></p>
 <p><strong>Tipo de pago:</strong> <i>{{ pago.get_tpago_display }}</i></p>
 <p><strong>Fecha y hora de pago:</strong> <i>{{ pago.fecha_pago }}</i></p>
 <p>
-    <a href="{% url 'pago_listar' %}">Regresar</a>
+    <a href="{% url 'pago_listar' %}"><button>Regresar</button></a>
 </p>
 {% endblock%}

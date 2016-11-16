@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 <title>{% block title %} Detalle Reserva {% endblock %}</title>
 {% block content %}
-<h1>Detalle Reserva</h1>
+<h1>Detalle Reserva</h1><br>
 <p><strong>Administrador:</strong> <i>{{ reserva.admin }}</i></p>
 <p><strong>DNI del Cliente:</strong> <i>{{ reserva.cliente.dni_cliente }}</i></p>
 <p><strong>Nombre completo del Cliente:</strong> <i>{{ reserva.cliente }}</i></p>
@@ -10,6 +10,6 @@
 <p><strong>Fecha de ingreso:</strong> <i>{{ reserva.fecha_in }} </i></p>
 <p><strong>Fecha de salida:</strong> <i>{{ reserva.fecha_out }}</i></p>
 <p>
-    <a href="{% url 'reserva_listar' %}">Regresar</a>
+    <a href="{% url 'reserva_listar' %}"><button>Regresar</button></a>
 </p>
 {% endblock%}

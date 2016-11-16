@@ -2,28 +2,28 @@
 {% extends "base.html" %}
 <title>{% block title %} Lista Pagos {% endblock %}</title>
 {% block content %}
-<h1>Lista Pagos</h1>
+<h1>Lista Pagos</h1><br>
 
 <table class="table table-bordered">
     <tbody>
         {% if object_list %}
-    <thead>
+    <thead align="center">
         <tr>
             <td><strong>#</strong></td>
             <td><strong>Acción</strong></td>
-            <td><strong>Reserva</strong></td>
+            <td><strong>Cliente</strong></td>
+            <td><strong>Habitación</strong></td>
             <td><strong>Tipo de pago</strong></td>
         </tr>
-
     </thead>
-
         {% for pago in object_list %}
         <tr>
             <td>{{ pago.id }}</td>
             <td>
                 <a href="{% url 'pago_detail' pago.id %}">Ver detalles</a> | <a href="{% url 'pago_editar' pago.id %}">Editar</a>
             </td>
-            <td>{{ pago.reserva }}</td>
+            <td>{{ pago.reserva.cliente }}</td>
+            <td>{{ pago.reserva.habitacion }}</td>
             <td>{{ pago.get_tpago_display }} </td>
         </tr>
         {% endfor %}

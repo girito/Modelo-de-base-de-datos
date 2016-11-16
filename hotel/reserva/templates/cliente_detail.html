@@ -6,7 +6,8 @@
 <h2>{{ cliente.nombre_cliente }}</h2>
 <p><strong>DNI:</strong> <i>{{ cliente.dni_cliente }}</i></p>
 <p><strong>Nombre completo:</strong> <i>{{ cliente.nombre_cliente }} {{ cliente.apellidos_cliente }}</i></p>
+<p><strong>Nombre completo:</strong> <i>{{ cliente.email }} </i></p>
 <p>
-    <a href="{% url 'cliente_listar' %}">Regresar</a>
+    <a href="{% url 'cliente_listar' %}"><button>Regresar</button></a>
 </p>
 {% endblock%}

@@ -2,18 +2,18 @@
 {% extends "base.html" %}
 <title>{% block title %} Lista Reservas {% endblock %}</title>
 {% block content %}
-<h1>Lista Reservas</h1>
+<h1>Lista Reservas</h1><br>
 
 <table class="table table-bordered">
     <tbody>
         {% if object_list %}
-        <thead>
+        <thead align="center">
             <tr>
                 <td><strong>#</strong></td>
                 <td><strong>Acción</strong></td>
                 <td><strong>Administrador</strong></td>
                 <td><strong>Cliente</strong></td>
-                <td><strong>Habitacion</strong></td>
+                <td><strong>Habitación</strong></td>
             </tr>
         </thead>
         {% for reserva in object_list %}

@@ -9,7 +9,7 @@ class HabitacionForm(forms.ModelForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model=Cliente
-        fields=["dni_cliente","nombre_cliente","apellidos_cliente"]
+        fields=["dni_cliente","nombre_cliente","apellidos_cliente", "email"]
 
 class AdminForm(forms.ModelForm):
     class Meta:

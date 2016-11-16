@@ -17,6 +17,7 @@ class Cliente(models.Model):
     dni_cliente=models.CharField(max_length=8)
     nombre_cliente = models.CharField(max_length=50)
     apellidos_cliente = models.CharField(max_length=50)
+    email=models.EmailField()
     def __str__(self):
         return self.nombre_cliente +" "+self.apellidos_cliente
 
