@@ -189,12 +189,6 @@ class PagoList(ListView):
     model = Pago
     template_name = "pago_list.html"
 
-def pago_list(request):
-    queryset = Pago.objects.all()
-    for pago in queryset:
-        dias=pago.reserva.fecha_out - pago.reserva.fecha_in
-    return render(request, 'pago_list.html', {"dias":dias,"queryset":queryset})
-
 def pago_create(request):
     titulo="Pagos"
     form=PagoForm(request.POST or None, request.FILES or None)
