@@ -21,7 +21,7 @@ from reservar.views import index, AdminList, admin_create, admin_edit, \
     ClienteDetail, ClienteList, cliente_create, cliente_edit, \
     HabitacionDetail, HabitacionList, habitacion_create, habitacion_edit, \
     ReservaDetail, ReservaList, reserva_create, reserva_edit, \
-    PagoDetail, PagoList, pago_create, pago_edit, pago_list
+    PagoDetail, PagoList, pago_create, pago_edit
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
